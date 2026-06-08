@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Galeri foto hasil cuci kendaraan di Doorsmeer Bersih Jaya - Motor, mobil, dan detailing." />
+  <title>Galeri | Doorsmeer Bersih Jaya</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 9999;
+      background: rgba(0,0,0,0.92); align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 85vh; border-radius: 12px; object-fit: contain; }
+    .lightbox-close {
+      position: absolute; top: 24px; right: 28px;
+      font-size: 2rem; cursor: pointer; color: #fff; background: none; border: none;
+      transition: color 0.2s;
+    }
+    .lightbox-close:hover { color: var(--primary); }
+    .filter-bar {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .filter-btn {
+      padding: 8px 22px; border-radius: 50px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      color: var(--text-muted); font-size: 0.88rem; font-weight: 600;
+      cursor: pointer; transition: all 0.3s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--gradient); color: #fff; border-color: transparent;
+    }
+    .gallery-item { cursor: zoom-in; }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">
+      <div class="logo-icon">🚗</div>
+      <span>BersihJaya</span>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Beranda</a></li>
+      <li><a href="layanan.html">Layanan</a></li>
+      <li><a href="harga.html">Harga</a></li>
+      <li><a href="galeri.html" class="active">Galeri</a></li>
+      <li><a href="tentang.html">Tentang</a></li>
+      <li><a href="kontak.html">Kontak</a></li>
+      <li><a href="booking.html" class="btn-booking">📅 Booking</a></li>
+    </ul>
+  </nav>
+
+  <!-- PAGE HEADER -->
+  <div style="padding: calc(var(--nav-h) + 60px) 5% 60px; background: linear-gradient(135deg, rgba(0,114,255,0.12), rgba(0,198,255,0.05)); border-bottom: 1px solid var(--border); text-align:center;">
+    <div class="section-badge reveal">📸 Galeri</div>
+    <h1 class="section-title reveal" style="margin-top:12px;">Hasil Kerja <span>Terbaik Kami</span></h1>
+    <p class="section-desc reveal">Lihat sendiri kualitas layanan kami. Setiap kendaraan dirawat dengan penuh dedikasi.</p>
+  </div>
+
+  <!-- GALLERY -->
+  <section>
+    <!-- Filter -->
+    <div class="filter-bar reveal">
+      <button class="filter-btn active" data-filter="all" id="filterAll">Semua</button>
+      <button class="filter-btn" data-filter="motor" id="filterMotor">🏍️ Motor</button>
+      <button class="filter-btn" data-filter="mobil" id="filterMobil">🚗 Mobil</button>
+      <button class="filter-btn" data-filter="detailing" id="filterDetailing">✨ Detailing</button>
+    </div>
+
+    <!-- Grid Galeri -->
+    <div id="galleryGrid" class="grid-gallery">
+
+      <div class="gallery-item span-2 reveal" data-category="mobil" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/hero.png','Cuci Mobil - Hasil Bersih Kilap')">
+        <img src="images/hero.png" alt="Cuci Mobil Hasil Kilap" style="width:100%; height:320px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>🚗 Cuci Mobil – Eksterior Kilap</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="motor" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/motor.png','Cuci Motor Premium')">
+        <img src="images/motor.png" alt="Cuci Motor Premium" style="width:100%; height:320px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>🏍️ Cuci Motor Premium</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="motor" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/motor.png','Motor Bersih Mengkilap')">
+        <img src="images/motor.png" alt="Motor Bersih" style="width:100%; height:260px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>🏍️ Motor Bersih Mengkilap</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="mobil" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/mobil.png','Cuci Mobil SUV')">
+        <img src="images/mobil.png" alt="Cuci Mobil SUV" style="width:100%; height:260px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>🚗 Cuci Mobil SUV</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="detailing" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/detailing.png','Detailing Interior Mobil')">
+        <img src="images/detailing.png" alt="Detailing Interior" style="width:100%; height:260px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>✨ Interior Deep Cleaning</span></div>
+      </div>
+
+      <div class="gallery-item span-2 reveal" data-category="detailing" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/detailing.png','Paket Detailing Premium')">
+        <img src="images/detailing.png" alt="Detailing Premium" style="width:100%; height:280px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>✨ Detailing Premium – Nano Coating</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="mobil" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/mobil.png','Mobil Bersih Sempurna')">
+        <img src="images/mobil.png" alt="Mobil Bersih" style="width:100%; height:260px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>🚗 Paket Full – Luar Dalam</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="motor" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/motor.png','Detailing Motor')">
+        <img src="images/motor.png" alt="Detailing Motor" style="width:100%; height:260px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>🏍️ Detailing Motor</span></div>
+      </div>
+
+      <div class="gallery-item reveal" data-category="detailing" style="border-radius:var(--radius); overflow:hidden; position:relative;" onclick="openLightbox('images/hero.png','Engine Bay Cleaning')">
+        <img src="images/hero.png" alt="Engine Cleaning" style="width:100%; height:260px; object-fit:cover; transition:transform 0.5s;" />
+        <div class="gallery-overlay"><span>✨ Engine Bay Cleaning</span></div>
+      </div>
+
+    </div>
+
+    <!-- CTA -->
+    <div style="text-align:center; margin-top:48px;" class="reveal">
+      <p style="color:var(--text-muted); margin-bottom:20px;">Ingin kendaraan Anda tampil seperti ini?</p>
+      <a href="booking.html" class="btn-primary" style="font-size:1.05rem; padding:14px 36px;">📅 Booking Sekarang</a>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section style="background:var(--bg-card);">
+    <div class="section-header reveal">
+      <div class="section-badge">⭐ Testimoni</div>
+      <h2 class="section-title">Kata <span>Pelanggan Kami</span></h2>
+    </div>
+    <div class="cards-grid">
+      <div class="card reveal" style="background:var(--bg-dark);">
+        <div class="card-body">
+          <div style="font-size:1.1rem; margin-bottom:12px;">⭐⭐⭐⭐⭐</div>
+          <p style="font-style:italic; color:var(--text-muted); margin-bottom:16px;">"Pelayanannya cepat banget, motor saya bersih dan mengkilap! Harganya juga terjangkau. Pasti balik lagi!"</p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:50%; background:var(--gradient); display:flex; align-items:center; justify-content:center;">👤</div>
+            <div>
+              <div style="font-weight:700; font-size:0.92rem;">Andi Pratama</div>
+              <div style="color:var(--text-muted); font-size:0.8rem;">Pelanggan Motor</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="background:var(--bg-dark);">
+        <div class="card-body">
+          <div style="font-size:1.1rem; margin-bottom:12px;">⭐⭐⭐⭐⭐</div>
+          <p style="font-style:italic; color:var(--text-muted); margin-bottom:16px;">"Baru pertama kali coba paket full mobil, hasilnya luar biasa! Interior bersih, bau wangi. Recommended banget!"</p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#ff6b35,#f7931e); display:flex; align-items:center; justify-content:center;">👤</div>
+            <div>
+              <div style="font-weight:700; font-size:0.92rem;">Budi Santoso</div>
+              <div style="color:var(--text-muted); font-size:0.8rem;">Pelanggan Mobil</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card reveal" style="background:var(--bg-dark);">
+        <div class="card-body">
+          <div style="font-size:1.1rem; margin-bottom:12px;">⭐⭐⭐⭐⭐</div>
+          <p style="font-style:italic; color:var(--text-muted); margin-bottom:16px;">"Paket nano coating-nya bagus banget! Mobil saya jadi kelihatan baru. Tim-nya ramah dan profesional."</p>
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,#25d366,#128c7e); display:flex; align-items:center; justify-content:center;">👤</div>
+            <div>
+              <div style="font-weight:700; font-size:0.92rem;">Sinta Dewi</div>
+              <div style="color:var(--text-muted); font-size:0.8rem;">Pelanggan Detailing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" onclick="closeLightbox()">✕</button>
+    <img src="" alt="" id="lightboxImg" />
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-brand" style="margin-bottom:12px;"><div class="logo-icon">🚗</div><span>BersihJaya</span></div>
+        <p>Layanan doorsmeer terpercaya untuk motor dan mobil Anda. Bersih, cepat, dan profesional sejak 2021.</p>
+        <div class="jam-ops" style="margin-top:16px;">Buka 08:00 – 20:00 WIB</div>
+      </div>
+      <div class="footer-col">
+        <h5>Menu</h5>
+        <ul>
+          <li><a href="index.html">Beranda</a></li>
+          <li><a href="layanan.html">Layanan</a></li>
+          <li><a href="harga.html">Daftar Harga</a></li>
+          <li><a href="galeri.html">Galeri</a></li>
+          <li><a href="tentang.html">Tentang Kami</a></li>
+          <li><a href="kontak.html">Kontak</a></li>
+          <li><a href="booking.html">Booking</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Kontak</h5>
+        <ul>
+          <li><a href="tel:+6281234567890">📞 0812-3456-7890</a></li>
+          <li><a href="https://wa.me/6281234567890">💬 WhatsApp</a></li>
+          <li><a href="#">📍 Jl. Merdeka No.10</a></li>
+          <li><a href="#">✉️ bersih.jaya@email.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 Doorsmeer Bersih Jaya. Dibuat dengan ❤️ untuk pelayanan terbaik.</p></div>
+  </footer>
+
+  <a href="https://wa.me/6281234567890" class="float-wa" target="_blank" title="Chat WhatsApp">💬</a>
+  <script src="js/script.js"></script>
+  <script>
+    // Lightbox
+    function openLightbox(src, alt) {
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightboxImg').alt = alt;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+      if (e.target === this) closeLightbox();
+    });
+
+    // Filter Gallery
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        galleryItems.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
