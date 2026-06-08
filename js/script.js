@@ -1,7 +1,7 @@
 // ===================================================
 // DOORSMEER BERSIH JAYA - Main JavaScript
 // ===================================================
-
+// 
 // ===== 1. NAVBAR: Scroll effect & Hamburger =====
 const navbar = document.getElementById('navbar');
 const hamburger = document.getElementById('hamburger');
